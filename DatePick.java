@@ -9,12 +9,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * This class creates a datepicker UI for a user to select a date from a calendar.
+ * @author saimerriam
+ *
+ */
 public class DatePick extends Application {
 	private Stage stage;
 	private DatePicker locationDatePicker;
 	private TimeSpinner spinner;
 	private String date;
 	
+	/*
+	 * Set a window for testing purposes(non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage stage) throws Exception {
 		this.stage = stage;
@@ -26,6 +35,10 @@ public class DatePick extends Application {
 		
 	}
 	
+	/*
+	 * Initialize a date picker in a specific location on the window. 
+	 * Incorporates a time spinner below it with time formatted.
+	 */
 	private void initDatePickerUI() {
 		VBox vbox = new VBox(20);
 		vbox.setStyle("-fx-padding: 10;");
@@ -54,6 +67,9 @@ public class DatePick extends Application {
 		
 	}
 	
+	/*
+	 * Method for returning a selected date.
+	 */
 	public String getDate() {
 		return date;
 	}
