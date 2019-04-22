@@ -6,6 +6,12 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.input.InputEvent;
 import javafx.util.StringConverter;
 
+/**
+ * This class creates a time spinner UI for the user to either type in a date or 
+ * to scroll using buttons to find the desired time.
+ * @author saimerriam
+ *
+ */
 public class TimeSpinner extends Spinner<LocalTime> {
 	private String time;
 	
@@ -54,7 +60,9 @@ public class TimeSpinner extends Spinner<LocalTime> {
         };
 
     }
-
+    /*
+     * Method for returning a specified time. 
+     */
     public String getTime() {
         return time;
     }
