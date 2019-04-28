@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainControllerv2">
    <left>
       <BorderPane prefHeight="900.0" prefWidth="271.0" style="-fx-background-color: #1e2e4a;" BorderPane.alignment="CENTER">
          <top>
@@ -54,13 +55,14 @@
             </AnchorPane>
          </top>
          <center>
-            <ScrollPane prefHeight="723.0" prefWidth="966.0" BorderPane.alignment="CENTER">
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <content>
-               </content>
-               <content>
-                  <ImageView fx:id="mapPane" fitHeight="851.0" fitWidth="1033.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="mapPane" fitHeight="745.0" fitWidth="1424.0" pickOnBounds="true" preserveRatio="true">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
                      <image>
-                        <Image url="@../img/Map_no_textExportTest.svg" />
+                        <Image url="@../Map_Export500.png" />
                      </image>
                   </ImageView>
                </content>
