@@ -25,8 +25,8 @@ public class TimeConverter {
 	public TimeConverter() {
 		
 		//Set Formatter
-		FromFormat = "yyyy-MM-dd HH:mm"; 
-		ToFormat = "yyyy-MM-dd HH:mm"; 
+		FromFormat = "yyyy-MM-dd HH:mm:ss"; 
+		ToFormat = "yyyy-MM-dd HH:mm:ss"; 
 				// Alternative e.g.: "dd-MMM-yyyy hh:mm:ss a z"; 
 		Formatter = DateTimeFormatter.ofPattern(ToFormat);
 		
@@ -64,7 +64,7 @@ public class TimeConverter {
 	public static void main(String[] args) {
 		
 		TimeConverter tc = new TimeConverter(); 
-		tc.Convert("2019-04-17 08:00", "Australia/Adelaide", "US/Eastern");
+		tc.Convert("2019-04-17 08:00:00", "Australia/Adelaide", "US/Eastern");
 		// Improvements and features: 
 		// (a) User inputTimeDate selection: possibly some sort of Calendar pop-up? I need to learn more about this. 
 		// (b) Timezone Selection: link to selectable Map; 
