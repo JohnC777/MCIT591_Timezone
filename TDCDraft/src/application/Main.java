@@ -116,7 +116,7 @@ public class Main extends Application {
 			AnchorPane.setTopAnchor(citySearch, 16.0);
 			citySearch.setPadding(new Insets(5.0, 20.0, 5.0, 0));
 			searchPane.getChildren().add(citySearch);
-			//Adding the "ADD" button.
+			//Adding the "ADD" and "RESET" buttons.
 			Button addCity = new Button("ADD");
 			addCity.setLayoutX(386.0);
 			addCity.setLayoutY(17.0);
@@ -126,6 +126,14 @@ public class Main extends Application {
 			addCity.setFont(new Font(12.0));
 			addCity.setStyle("-fx-background-color: rgba(0, 204, 190, 1);");
 			searchPane.getChildren().add(addCity);
+			Button reset = new Button("RESET");
+			reset.setLayoutX(463);
+			reset.setLayoutY(16.5);
+			reset.setPrefSize(52.25, 26.5);
+			reset.setPadding(new Insets(0,0,0,0));
+			reset.setFont(new Font(12.0));
+			reset.setTextFill(Color.web("#656565"));
+			searchPane.getChildren().add(reset);
 			
 			//Adding ImageView pane to hold map image.
 			ImageView mapImage = new ImageView();
@@ -143,8 +151,44 @@ public class Main extends Application {
 			
 			//Creating a group to hold all of the pins.
 			Group pinGroup = new Group(
-					p.pinMaker("NEW YORK", 255, 108),
-					p.pinMaker("SAO PAULO", 360, 355)
+					p.pinMaker("TORONTO", 231, 141, ""),
+					p.pinMaker("NEW YORK", 251.5, 153, ""),
+					p.pinMaker("VANCOUVER", 70.25, 115.75, ""),
+					p.pinMaker("SALT LAKE CITY", 122, 149, ""),
+					p.pinMaker("SÃO PAULO", 351.75, 403.5, ""),
+					p.pinMaker("HOUSTON", 172.5, 201.5, ""),
+					p.pinMaker("LOS ANGELES", 87.5, 183.5, ""),
+					p.pinMaker("ANCHORAGE", -28.5, 53.5, ""),
+					p.pinMaker("HONOLULU", -58, 233.5, ""),
+					p.pinMaker("BEIJING", 954.75, 160, ""),
+					p.pinMaker("HONG KONG",	945.5, 230, ""),
+					p.pinMaker("PERTH", 951.5, 435, ""),
+					p.pinMaker("ADELAIDE", 1036, 447.75, ""),
+					p.pinMaker("SYDNEY", 1082.5, 443.5, ""),
+					p.pinMaker("LONDON", 522.5, 105, ""),
+					p.pinMaker("MEXICO CITY", 158.5, 243.5, ""),
+					p.pinMaker("CAPE TOWN", 592.25, 444.25, ""),
+					p.pinMaker("ADDIS ABABA", 667, 280.5, ""),
+					p.pinMaker("ROME", 570.25, 149.75, ""),
+					p.pinMaker("SANTIAGO", 263, 441, ""),
+					p.pinMaker("TOKYO", 1039.75, 176.5, ""),
+					p.pinMaker("JAKARTA", 918, 337, ""),
+					p.pinMaker("TEHRAN", 713, 175, ""),
+					p.pinMaker("LAHORE", 797.75, 194.5, ""),
+					p.pinMaker("KATHMANDU", 838.5, 208.5, ""),
+					p.pinMaker("MUMBAI", 794, 244, ""),
+					p.pinMaker("CARACAS", 277, 275.25, ""),
+					p.pinMaker("FREETOWN", 475.75, 282.5, ""),
+					p.pinMaker("DUBAI", 729, 219, ""),
+					p.pinMaker("AUCKLAND", 1168.75, 455.75, ""),
+					p.pinMaker("MAGADAN", 1080.5, 63, ""),
+					p.pinMaker("DHAKA", 857.75, 224.75, ""),
+					p.pinMaker("YANGON", 879, 251, ""),
+					p.pinMaker("NUUK", 333, 36, ""),
+					p.pinMaker("CAIRO", 639, 200, ""),
+					p.pinMaker("KINSHASA", 580.5, 330.5, ""),
+					p.pinMaker("LIMA", 240.5, 359, ""),
+					p.pinMaker("REYKJAVÍK", 444, 36.25, "")
 					);
 			
 			//Creating a new group to hold the map and the group of pins.
