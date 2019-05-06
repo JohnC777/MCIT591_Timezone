@@ -9,9 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+
 public class Pin {
 	private static final String PINIMAGE_URL = "PinImage100.png";
 	private String city;
+	private String timeZoneID;
 	/*
 	 * Method creates a new pin group to add to the map.
 	 */
@@ -69,8 +71,16 @@ public class Pin {
 		return pinGroup;
 	}
 
-//	public String getCityName() {
-//		pinMaker.
-//		
-//	}
+	//TODO: Create a set pin time method
+	
+	//TODO: Create a set pin date method
+	
+	public String getTimeZoneID() {
+		return timeZoneID;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
 }
