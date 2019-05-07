@@ -21,20 +21,29 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class ZoomFunctions {
-	
+
+	/**
+	 * Method creates a scroll-zoomable and click-draggable map pane.
+	 * 
+	 * @param group consisting of the map and a Group of overlaid pins.
+	 * @return a ScrollPane to place on the parent pane.
+	 */
 	public ScrollPane createZoomPane(final Group group) {
 		final double SCALE_DELTA = 1.1;
+
+		// Creating a StackPane and adding group passed in
+		// This is so the button group can be added
 		final StackPane zoomPane = new StackPane();
-		
 		zoomPane.getChildren().add(group);
-		
-		
+
+		// Creating ScrollPane and setting StackPane content
 		final ScrollPane scroller = new ScrollPane();
 		final Group scrollContent = new Group(zoomPane);
 		scroller.setContent(scrollContent);
 		scroller.setPrefViewportWidth(860);
 		scroller.setPrefViewportHeight(678);
-		
+
+		// Listener that adjusts the viewport when image bounds change
 		scroller.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
 			@Override
 			public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
@@ -42,6 +51,7 @@ public class ZoomFunctions {
 			}
 		});
 
+		// Handles a scroll event to change the scale factor of the map and pin group
 		zoomPane.setOnScroll(new EventHandler<ScrollEvent>() {
 			@Override
 			public void handle(ScrollEvent event) {
@@ -67,7 +77,7 @@ public class ZoomFunctions {
 			}
 		});
 
-		// Panning via drag
+		// Allows panning via mouse click and drag
 		final ObjectProperty<Point2D> lastMouseCoordinates = new SimpleObjectProperty<Point2D>();
 		scrollContent.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
@@ -94,7 +104,7 @@ public class ZoomFunctions {
 				scroller.setVvalue(Math.max(0, Math.min(scroller.getVmax(), desiredV)));
 			}
 		});
-		
+
 		return scroller;
 	}
 
@@ -132,64 +142,75 @@ public class ZoomFunctions {
 			scroller.setHvalue(scroller.getHmin());
 		}
 	}
-	
-	  public Group createZoomButtonGroup(final Group group) {
-			
-		  Button zoomIn = new Button("+");
-			zoomIn.setPrefSize(40,30);
-			zoomIn.setFont(new Font(28));
-			zoomIn.setTextFill(Color.web("726f6f"));
-			zoomIn.setLayoutX(800);
-			zoomIn.setLayoutY(580);
-			zoomIn.setBlendMode(BlendMode.SRC_OVER);
-			zoomIn.setPadding(new Insets(0, 0, 2, 0));
-			zoomIn.setOnAction(new EventHandler<ActionEvent>() {
-			      @Override
-			      public void handle(ActionEvent event) {
-			        group.setScaleX(group.getScaleX() * 1.5);
-			        group.setScaleY(group.getScaleY() * 1.5);
-			      }
-			    });
-			
-			Button zoomOut = new Button("-");
-			zoomOut.setPrefSize(40,30);
-			zoomOut.setFont(new Font(28));
-			zoomOut.setTextFill(Color.web("726f6f"));
-			zoomOut.setLayoutX(800);
-			zoomOut.setLayoutY(615);
-			zoomOut.setBlendMode(BlendMode.SRC_OVER);
-			zoomOut.setPadding(new Insets(0, 0, 2, 0));
-		    zoomOut.setOnAction(new EventHandler<ActionEvent>() {
-			      @Override
-			      public void handle(ActionEvent event) {
-			        group.setScaleX(group.getScaleX() * 1 / 1.5);
-			        group.setScaleY(group.getScaleY() * 1 / 1.5);
-			      }
-			    });
-			
-		    Button reset = new Button("RESET");
-		    reset.setPrefSize(40, 20);
-		    reset.setFont(new Font(8));
-			reset.setTextFill(Color.web("726f6f"));
-			reset.setLayoutX(800);
-			reset.setLayoutY(650);
-			reset.setPadding(new Insets(0, 0, 0, 0));
-			reset.setBlendMode(BlendMode.SRC_OVER);
-			reset.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-		      public void handle(ActionEvent event) {
-		        group.setScaleX(1);
-		        group.setScaleY(1);
-		      }
-		    });
-		    
-		    Group buttonGroup = new Group(
-		    		zoomIn,
-		    		zoomOut,
-		    		reset
-		    		);
-		    
-		    return buttonGroup;
 
-		  }
+	/**
+	 * Method to create a group of zoom-control buttons to overlay on the map
+	 * ScrollPane.
+	 * 
+	 * @param group consisting of the map and a Group of overlaid pins.
+	 * @return Group of buttons to place on map ScrollPane.
+	 */
+	public Group createZoomButtonGroup(final Group group) {
+
+		// Make zoom in button
+		Button zoomIn = new Button("+");
+		zoomIn.setPrefSize(40, 30);
+		zoomIn.setFont(new Font(28));
+		zoomIn.setTextFill(Color.web("726f6f"));
+		zoomIn.setLayoutX(800);
+		zoomIn.setLayoutY(580);
+		zoomIn.setBlendMode(BlendMode.SRC_OVER);
+		zoomIn.setPadding(new Insets(0, 0, 2, 0));
+		// Set action for zoom in button
+		zoomIn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				group.setScaleX(group.getScaleX() * 1.25);
+				group.setScaleY(group.getScaleY() * 1.25);
+			}
+		});
+
+		// Make zoom out button
+		Button zoomOut = new Button("-");
+		zoomOut.setPrefSize(40, 30);
+		zoomOut.setFont(new Font(28));
+		zoomOut.setTextFill(Color.web("726f6f"));
+		zoomOut.setLayoutX(800);
+		zoomOut.setLayoutY(615);
+		zoomOut.setBlendMode(BlendMode.SRC_OVER);
+		zoomOut.setPadding(new Insets(0, 0, 2, 0));
+		// Set action for zoom out button
+		zoomOut.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				group.setScaleX(group.getScaleX() * 1 / 1.25);
+				group.setScaleY(group.getScaleY() * 1 / 1.25);
+			}
+		});
+
+		// Create a reset button
+		Button reset = new Button("RESET");
+		reset.setPrefSize(40, 20);
+		reset.setFont(new Font(8));
+		reset.setTextFill(Color.web("726f6f"));
+		reset.setLayoutX(800);
+		reset.setLayoutY(650);
+		reset.setPadding(new Insets(0, 0, 0, 0));
+		reset.setBlendMode(BlendMode.SRC_OVER);
+		// Set action for the scale to return to 100%
+		reset.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				group.setScaleX(1);
+				group.setScaleY(1);
+			}
+		});
+
+		// Put together in group and return
+		Group buttonGroup = new Group(zoomIn, zoomOut, reset);
+
+		return buttonGroup;
+
+	}
 }
+
