@@ -92,14 +92,14 @@ public class Main extends Application {
 			howToUse.setFill(Color.web("d3d3d3"));
 			leftPane.getChildren().add(howToUse);
 			// TODO: replace below placeholder for filter code.
-			ImageView filterViewer = new ImageView();
-			Image filter = new Image(FILTER_URL);
-			filterViewer.setImage(filter);
-			filterViewer.setPreserveRatio(true);
-			filterViewer.setFitWidth(240);
-			filterViewer.setLayoutX(17);
-			filterViewer.setLayoutY(300);
-			leftPane.getChildren().add(filterViewer);
+//			ImageView filterViewer = new ImageView();
+//			Image filter = new Image(FILTER_URL);
+//			filterViewer.setImage(filter);
+//			filterViewer.setPreserveRatio(true);
+//			filterViewer.setFitWidth(240);
+//			filterViewer.setLayoutX(17);
+//			filterViewer.setLayoutY(300);
+//			leftPane.getChildren().add(filterViewer);
 			leftBorderPane.setCenter(leftPane);
 
 			// Below is code for the right/central section of the parentBorderPane
@@ -360,6 +360,23 @@ public class Main extends Application {
 					}
 				});
 			}
+			
+			// TODO: replace below placeholder for filter code.
+			CheckBox c = new CheckBox();
+			c.setLayoutX(30);
+			c.setLayoutY(330);
+			c.setPrefSize(7, 7);
+			c.setPadding(new Insets(0,0,0,0));
+			c.setScaleX(.7);
+			c.setScaleY(.7);
+			c.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					//loop through HashMap
+					//Color code for green: "#ddffdf"
+				}
+			});
+			leftPane.getChildren().add(c);
 
 			root.getChildren().add(parentBorderPane);
 			window.setScene(scene);
