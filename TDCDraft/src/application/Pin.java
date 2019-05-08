@@ -13,11 +13,26 @@ import javafx.scene.text.Font;
 
 public class Pin {
 	private static final String PINIMAGE_URL = "PinImage100.png";
+	//private static final String PINIMAGE_GREEN_URL = "GreenPinImage.png";
 	private String city;
 	private String timeZoneID;
 	private DatePicker dp;
 	private TimeSpinner ts;
+	private ImageView pinImage;
+	private String userChoice;
+	private String cityName;
+	private String timeZone;
+	private double cityCoordinateX;
+	private double cityCoordinateY;
 
+
+	public Pin(String cityName, double cityCoordinateX, double cityCoordinateY, String timeZone, String userChoice) {
+		this.cityName = cityName;
+		this.cityCoordinateX = cityCoordinateX;
+		this.cityCoordinateY = cityCoordinateY;
+		this.timeZone = timeZone;
+		this.userChoice = userChoice;
+	}
 	/**
 	 * Method creates a new pin group to add to the map.
 	 * 
@@ -88,7 +103,12 @@ public class Pin {
 		dp.setValue(LocalDate.of(year, month, dayOfMonth));
 		ts.getValueFactory().setValue(time);
 	}
-
+	
+	public void setPinColor() {
+		Image greenPin = new Image(ImageURL);
+		pinImage.setImage(greenPin);
+	}
+	
 	public String getTimeZoneID() {
 		return timeZoneID;
 	}
