@@ -1,14 +1,25 @@
 package application;
 
 import java.util.HashMap;
+
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
@@ -25,7 +36,7 @@ public class Main extends Application {
 	Stage window;
 	private static final String IMAGE_URL = "Map_Export500.png";
 	private static final String FILTER_URL = "FilterImage.png";
-	private HashMap<String, Pin> allCityPins;
+	private HashMap<Pin, Group> allCityPins;
 	private HashMap<String, Pin> citiesOnMap;
 
 	/*
@@ -91,15 +102,15 @@ public class Main extends Application {
 			howToUse.setFont(new Font(11));
 			howToUse.setFill(Color.web("d3d3d3"));
 			leftPane.getChildren().add(howToUse);
-			// TODO: replace below placeholder for filter code.
-//			ImageView filterViewer = new ImageView();
-//			Image filter = new Image(FILTER_URL);
-//			filterViewer.setImage(filter);
-//			filterViewer.setPreserveRatio(true);
-//			filterViewer.setFitWidth(240);
-//			filterViewer.setLayoutX(17);
-//			filterViewer.setLayoutY(300);
-//			leftPane.getChildren().add(filterViewer);
+
+			ImageView filterViewer = new ImageView();
+			Image filter = new Image(FILTER_URL);
+			filterViewer.setImage(filter);
+			filterViewer.setPreserveRatio(true);
+			filterViewer.setFitWidth(240);
+			filterViewer.setLayoutX(17);
+			filterViewer.setLayoutY(300);
+			leftPane.getChildren().add(filterViewer);
 			leftBorderPane.setCenter(leftPane);
 
 			// Below is code for the right/central section of the parentBorderPane
@@ -120,20 +131,11 @@ public class Main extends Application {
 			AnchorPane.setTopAnchor(searchPrompt, 19.0);
 			searchPane.getChildren().add(searchPrompt);
 
-			// Below Text field for future search bar integration.
-			// Construct the city class here.
-			TextField citySearch = new TextField();
-			citySearch.setLayoutX(191.0);
-			citySearch.setLayoutY(16.0);
-			AnchorPane.setLeftAnchor(citySearch, 191.0);
-			AnchorPane.setTopAnchor(citySearch, 16.0);
-			citySearch.setPadding(new Insets(5.0, 20.0, 5.0, 0));
-			searchPane.getChildren().add(citySearch);
+
 			// Adding the "ADD" button.
 			Button addCity = new Button("ADD");
 			addCity.setLayoutX(386.0);
 			addCity.setLayoutY(17.0);
-			addCity.setMnemonicParsing(false);
 			addCity.setPrefSize(52.0, 25.0);
 			addCity.setTextFill(Color.web("#e8e8e8"));
 			addCity.setFont(new Font(14.0));
@@ -162,177 +164,154 @@ public class Main extends Application {
 
 			// Constructing the Pin classes to create pins.
 			// Otherwise will not be able to differentiate them.
-			allCityPins = new HashMap<String, Pin>();
-			Pin toronto = new Pin();
-			allCityPins.put("Toronto", toronto);
-			Pin newYork = new Pin();
-			allCityPins.put("New York", newYork);
-			Pin vancouver = new Pin();
-			allCityPins.put("Vancouver", vancouver);
-			Pin saltLakeCity = new Pin();
-			allCityPins.put("Salt Lake City", saltLakeCity);
-			Pin saoPaulo = new Pin();
-			allCityPins.put("Sao Paulo", saoPaulo);
-			Pin houston = new Pin();
-			allCityPins.put("Houston", houston);
-			Pin losAngeles = new Pin();
-			allCityPins.put("Los Angeles", losAngeles);
-			Pin anchorage = new Pin();
-			allCityPins.put("Anchorage", anchorage);
-			Pin honolulu = new Pin();
-			allCityPins.put("Honolulu", honolulu);
-			Pin beijing = new Pin();
-			allCityPins.put("Beijing", beijing);
-			Pin hongKong = new Pin();
-			allCityPins.put("Hong Kong", hongKong);
-			Pin perth = new Pin();
-			allCityPins.put("Perth", perth);
-			Pin adelaide = new Pin();
-			allCityPins.put("Adelaide", adelaide);
-			Pin sydney = new Pin();
-			allCityPins.put("Sydney", sydney);
-			Pin london = new Pin();
-			allCityPins.put("London", london);
-			Pin mexicoCity = new Pin();
-			allCityPins.put("Mexico City", mexicoCity);
-			Pin capeTown = new Pin();
-			allCityPins.put("Cape Town", capeTown);
-			Pin addisAbaba = new Pin();
-			allCityPins.put("Addis Ababa", addisAbaba);
-			Pin rome = new Pin();
-			allCityPins.put("Rome", rome);
-			Pin santiago = new Pin();
-			allCityPins.put("Santiago", santiago);
-			Pin tokyo = new Pin();
-			allCityPins.put("Tokyo", tokyo);
-			Pin jakarta = new Pin();
-			allCityPins.put("Jakarta", jakarta);
-			Pin tehran = new Pin();
-			allCityPins.put("Tehran", tehran);
-			Pin lahore = new Pin();
-			allCityPins.put("Lahore", lahore);
-			Pin kathmandu = new Pin();
-			allCityPins.put("Kathmandu", kathmandu);
-			Pin mumbai = new Pin();
-			allCityPins.put("Mumbai", mumbai);
-			Pin caracas = new Pin();
-			allCityPins.put("Caracas", caracas);
-			Pin freetown = new Pin();
-			allCityPins.put("Freetown", freetown);
-			Pin dubai = new Pin();
-			allCityPins.put("Dubai", dubai);
-			Pin auckland = new Pin();
-			allCityPins.put("Auckland", auckland);
-			Pin magadan = new Pin();
-			allCityPins.put("Magadan", magadan);
-			Pin dhaka = new Pin();
-			allCityPins.put("Dhaka", dhaka);
-			Pin yangon = new Pin();
-			allCityPins.put("Yangon", yangon);
-			Pin nuuk = new Pin();
-			allCityPins.put("Nuuk", nuuk);
-			Pin cairo = new Pin();
-			allCityPins.put("Cairo", cairo);
-			Pin kinshasa = new Pin();
-			allCityPins.put("Kinshasa", kinshasa);
-			Pin lima = new Pin();
-			allCityPins.put("Lima", lima);
-			Pin reykjavik = new Pin();
-			allCityPins.put("Reykjavik", reykjavik);
+//			Pin addisAbaba = new Pin("ADDIS ABABA", 667, 280.5, "Africa/Addis_Ababa", "Addis Ababa (UTC+03:00)");
+//			Pin adelaide = new Pin("ADELAIDE", 1036, 447.75, "Australia/Adelaide", "Adelaide (UTC+09:30)");
+			Pin anchorage = new Pin("ANCHORAGE", -28.5, 53.5, "America/Anchorage", "Anchorage (UTC-08:00)");
+//			Pin auckland = new Pin("AUCKLAND", 1168.75, 455.75, "Pacific/Auckland", "Auckland  (UTC+12:00)");
+//			Pin beijing = new Pin("BEIJING", 954.75, 160, "Asia/Shanghai", "Beijing (UTC+08:00)");
+//			Pin cairo = new Pin("CAIRO", 639, 200, "Africa/Cairo", "Cairo (UTC+02:00)");
+//			Pin capeTown = new Pin("CAPE TOWN", 592.25, 444.25, "Africa/Johannesburg", "Cape Town (UTC+02:00");
+//			Pin caracas = new Pin("CARACAS", 277, 275.25, "America/Caracas", "Caracas (UTC-04:30)");
+//			Pin dhaka = new Pin("DHAKA", 857.75, 224.75, "Asia/Dhaka", "Dhaka (UTC+06:00)");
+//			Pin dubai = new Pin("DUBAI", 729, 219, "Asia/Dubai", "Dubai (UTC+04:00)");
+//			Pin freetown = new Pin("FREETOWN", 475.75, 282.5, "Africa/Freetown", "Freetown (UTC+00:00)");
+//			Pin hongKong = new Pin ("HONG KONG", 945.5, 230, "Hongkong", "Hong Kong (UTC+08:00)");
+//			Pin honolulu = new Pin ("HONOLULU", -58, 233.5, "Pacific/Honolulu", "Honolulu (UTC-10:00)");
+			Pin houston = new Pin ("HOUSTON", 172.5, 201.5, "US/Central", "Houston (UTC-05:00)");
+//			Pin jakarta = new Pin ("JAKARTA", 918, 337, "Asia/Jakarta", "Jakarta (UTC+07:00)");
+//			Pin kathmandu = new Pin ("KATHMANDU", 838.5, 208.5, "Asia/Kathmandu", "Kathmandu (UTC+05:45)");
+//			Pin kinshasa = new Pin ("KINSHASA", 580.5, 330.5, "Africa/Kinshasa", "Kinshasa (UTC+01:00)");
+//			Pin lahore = new Pin ("LAHORE", 797.75, 194.5, "Asia/Karachi", "Lahore (UTC+05:00)"); 
+//			Pin lima = new Pin ("LIMA", 240.5, 359, "America/Lima", "Lima (UTC-05:00)");
+//			Pin london = new Pin ("LONDON", 522.5, 105, "Europe/London", "London (UTC+01:00)"); 
+//			Pin losAngeles = new Pin ("LOS ANGELES", 87.5, 183.5, "America/Los_Angeles", "Los Angeles (UTC-07:00)"); 
+//			Pin magadan = new Pin ("MAGADAN", 1080.5, 63, "Asia/Magadan", "Magadan (UTC+10:00)"); 
+//			Pin mexicoCity = new Pin ("MEXICO CITY", 158.5, 243.5, "America/Mexico_City", "Mexico City (UTC-05:00)"); 
+//			Pin mumbai = new Pin ("MUMBAI", 794, 244, "Asia/Kolkata", "Mumbai (UTC+05:30)"); 
+			Pin newYork = new Pin ("NEW YORK", 251.5, 153, "America/New_York", "New York (UTC-04:00)"); 
+//			Pin nuuk = new Pin ("NUUK", 333, 36, "America/Godthab", "Nuuk (UTC-02:00)"); 
+//			Pin perth = new Pin ("PERTH", 951.5, 435, "Australia/Perth", "Perth (UTC+08:00)"); 
+//			Pin reykjavik = new Pin ("REYKJAVÍK", 444, 36.25, "Atlantic/Reykjavik", "Reykjavik (UTC+00:00)");
+//			Pin rome = new Pin("ROME", 570.25, 149.75, "Europe/Rome", "Rome (UTC+02:00)"); 
+//			Pin saltLakeCity = new Pin("SALTLAKECITY", 122, 149, "US/Mountain", "Salt Lake City (UTC-06:00)"); 
+//			Pin santiago = new Pin("SANTIAGO", 263, 441, "America/Santiago", "Santiago (UTC-03:00)"); 
+//			Pin saoPaulo = new Pin ("SÃO PAULO", 351.75, 403.5, "America/Sao_Paulo", "Sao Paulo (UTC-03:00)"); 
+//			Pin sydney = new Pin ("SYDNEY", 1082.5, 443.5, "Australia/Sydney", "Sydney (UTC+10:00)"); 
+//			Pin tehran = new Pin("TEHRAN", 713, 175, "Asia/Tehran", "Tehran (UTC+04:30)"); 
+//			Pin tokyo = new Pin("TOKYO", 1039.75, 176.5, "Asia/Tokyo", "Tokyo (UTC+09:00)"); 
+//			Pin toronto = new Pin("TORONTO", 231, 141, "America/Toronto", "Toronto (UTC-04:00)"); 
+//			Pin vancouver = new Pin("VANCOUVER", 70.25, 115.75, "America/Vancouver", "Vancouver (UTC-07:00)"); 
+//			Pin yangon = new Pin ("YANGON", 879, 251, "Asia/Rangoon", "Yangon (UTC+06:30)");
+			allCityPins = new HashMap<Pin, Group>();
+//			allCityPins.put("Addis Ababa", addisAbaba);
+//			allCityPins.put("Adelaide", adelaide);
+			allCityPins.put(anchorage, anchorage.pinMaker("ANCHORAGE", -28.5, 53.5, "America/Anchorage"));
+//			allCityPins.put("Auckland", auckland);
+//			allCityPins.put("Beijing", beijing);
+//			allCityPins.put("Cairo", cairo);
+//			allCityPins.put("Cape Town", capeTown);
+//			allCityPins.put("Caracas", caracas);
+//			allCityPins.put("Dhaka", dhaka);
+//			allCityPins.put("Dubai", dubai);
+//			allCityPins.put("Freetown", freetown);
+			allCityPins.put(houston, houston.pinMaker("HOUSTON", 172.5, 201.5, "US/Central"));			
+//			allCityPins.put("London", london);
+//			allCityPins.put("Los Angeles", losAngeles);
+//			allCityPins.put("Magadan", magadan);
+//			allCityPins.put("Mexico City", mexicoCity);
+//			allCityPins.put("Mumbai", mumbai);
+			allCityPins.put(newYork, newYork.pinMaker("NEW YORK", 251.5, 153, "America/New_York"));
+//			allCityPins.put("Nuuk", nuuk);
+//			allCityPins.put("Perth", perth);
+//			allCityPins.put("Reykjavik", reykjavik);
+//			allCityPins.put("Rome", rome);
+//			allCityPins.put("Salt Lake City", saltLakeCity);
+//			allCityPins.put("Santiago", santiago);
+//			allCityPins.put("Sao Paulo", saoPaulo);
+//			allCityPins.put("Sydney", sydney);
+//			allCityPins.put("Tehran", tehran);
+//			allCityPins.put("Tokyo", tokyo);
+//			allCityPins.put("Toronto", toronto);
+//			allCityPins.put("Vancouver", vancouver);
+//			allCityPins.put("Yangon", yangon);
 
 			/*
-			 * TODO: JOHN PUT CODE FOR SEARCHBAR FUNCTION HERE!!
+			 * TODO: JOHN PUT CODE FOR SEARCHBAR FUNCTION HERE!!!!!!!!!!
 			 */
-
+			//Search Bar Code
+			DropDownMenu ddm = new DropDownMenu();
+			ComboBox comboBox = new ComboBox();
+			comboBox = ddm.populateComboBox();
+			new AutoCompleteComboBoxListener<>(comboBox);
+			comboBox.setLayoutX(191.0);
+			comboBox.setLayoutY(16.0);
+			searchPane.getChildren().add(comboBox);
 			// TODO:Taking search bar output, need method to put cities onto the citiesOnMap
 			// HashMap
-			// For example:
-			citiesOnMap = new HashMap<String, Pin>();
-			citiesOnMap.put("Sao Paulo", saoPaulo);
-			citiesOnMap.put("Santiago", santiago);
-			citiesOnMap.put("Lima", lima);
-			citiesOnMap.put("Mumbai", mumbai);
-			citiesOnMap.put("New York", newYork);
-			citiesOnMap.put("Vancouver", vancouver);
-			citiesOnMap.put("London", london);
-			citiesOnMap.put("Tokyo", tokyo);
-			citiesOnMap.put("Adelaide", adelaide);
-			citiesOnMap.put("Mexico City", mexicoCity);
-			citiesOnMap.put("Addis Ababa", addisAbaba);
-			citiesOnMap.put("Jakarta", jakarta);
-			citiesOnMap.put("Hong Kong", hongKong);
-			citiesOnMap.put("Freetown", freetown);
-			citiesOnMap.put("Tehran", tehran);
-
-			// Creating a group to hold all of the pins and making pins.
-			Group pinGroup = new Group();
-			pinGroup.getChildren().add(saoPaulo.pinMaker("SÃO PAULO", 351.75, 403.5, "America/Sao_Paulo"));
-			pinGroup.getChildren().add(santiago.pinMaker("SANTIAGO", 263, 441, "America/Santiago"));
-			pinGroup.getChildren().add(lima.pinMaker("LIMA", 240.5, 359, "America/Lima"));
-			pinGroup.getChildren().add(mumbai.pinMaker("MUMBAI", 794, 244, "Asia/Kolkata"));
-			pinGroup.getChildren().add(newYork.pinMaker("NEW YORK", 251.5, 153, "America/New_York"));
-			pinGroup.getChildren().add(vancouver.pinMaker("VANCOUVER", 70.25, 115.75, "America/Vancouver"));
-			pinGroup.getChildren().add(london.pinMaker("LONDON", 522.5, 105, "Europe/London"));
-			pinGroup.getChildren().add(tokyo.pinMaker("TOKYO", 1039.75, 176.5, "Asia/Tokyo"));
-			pinGroup.getChildren().add(adelaide.pinMaker("ADELAIDE", 1036, 447.75, "Australia/Adelaide"));
-			pinGroup.getChildren().add(mexicoCity.pinMaker("MEXICO CITY", 158.5, 243.5, "America/Mexico_City"));
-			pinGroup.getChildren().add(addisAbaba.pinMaker("ADDIS ABABA", 667, 280.5, "Africa/Addis_Ababa"));
-			pinGroup.getChildren().add(jakarta.pinMaker("JAKARTA", 918, 337, "Asia/Jakarta"));
-			pinGroup.getChildren().add(hongKong.pinMaker("HONG KONG", 945.5, 230, "Hongkong"));
-			pinGroup.getChildren().add(freetown.pinMaker("FREETOWN", 475.75, 282.5, "Africa/Freetown"));
-			pinGroup.getChildren().add(tehran.pinMaker("TEHRAN", 713, 175, "Asia/Tehran"));
+		
 			/*
 			 * TODO: Given new strategy of using 2 HashMaps, probably need to edit the Pin
 			 * contructor to also take+set below passed arguments for all the cities. Then
 			 * can update the pins in allCityPins above. Then see if can use a button
 			 * ActionEvent to add the selected Pin to the citiesOnMap HashMap and to add the
-			 * Pin.pinMaker the PinGRoup above.
+			 * Pin.pinMaker the PinGroup above.
 			 */
-//					toronto.pinMaker("TORONTO", 231, 141, "America/Toronto"),
-//					newYork.pinMaker("NEW YORK", 251.5, 153, "America/New_York"),
-//					vancouver.pinMaker("VANCOUVER", 70.25, 115.75, "America/Vancouver"),
-//					saltLakeCity.pinMaker("SALTLAKECITY", 122, 149, "US/Mountain"),
-//					saoPaulo.pinMaker("SÃO PAULO", 351.75, 403.5, "America/Sao_Paulo"),
-//					houston.pinMaker("HOUSTON", 172.5, 201.5, "US/Central"),
-//					losAngeles.pinMaker("LOS ANGELES", 87.5, 183.5, "America/Los_Angeles"),
-//					anchorage.pinMaker("ANCHORAGE", -28.5, 53.5, "America/Anchorage"),
-//					honolulu.pinMaker("HONOLULU", -58, 233.5, "Pacific/Honolulu"),
-//					beijing.pinMaker("BEIJING", 954.75, 160, "Asia/Shanghai"),
-//					hongKong.pinMaker("HONG KONG",	945.5, 230, "Hongkong"),
-//					perth.pinMaker("PERTH", 951.5, 435, "Australia/Perth"),
-//					adelaide.pinMaker("ADELAIDE", 1036, 447.75, "Australia/Adelaide"),
-//					sydney.pinMaker("SYDNEY", 1082.5, 443.5, "Australia/Sydney"),
-//					london.pinMaker("LONDON", 522.5, 105, "Europe/London"),
-//					mexicoCity.pinMaker("MEXICO CITY", 158.5, 243.5, "America/Mexico_City"),
-//					capeTown.pinMaker("CAPE TOWN", 592.25, 444.25, "Africa/Johannesburg"),
-//					addisAbaba.pinMaker("ADDIS ABABA", 667, 280.5, "Africa/Addis_Ababa"),
-//					rome.pinMaker("ROME", 570.25, 149.75, "Europe/Rome"),
-//					santiago.pinMaker("SANTIAGO", 263, 441, "America/Santiago"),
-//					tokyo.pinMaker("TOKYO", 1039.75, 176.5, "Asia/Tokyo"),
-//					jakarta.pinMaker("JAKARTA", 918, 337, "Asia/Jakarta"),
-//					tehran.pinMaker("TEHRAN", 713, 175, "Asia/Tehran"),
-//					lahore.pinMaker("LAHORE", 797.75, 194.5, "Asia/Karachi"),
-//					kathmandu.pinMaker("KATHMANDU", 838.5, 208.5, "Asia/Kathmandu"),
-//					mumbai.pinMaker("MUMBAI", 794, 244, "Asia/Kolkata"),
-//					caracas.pinMaker("CARACAS", 277, 275.25, "America/Caracas"),
-//					freetown.pinMaker("FREETOWN", 475.75, 282.5, "Africa/Freetown"),
-//					dubai.pinMaker("DUBAI", 729, 219, "Asia/Dubai"),
-//					auckland.pinMaker("AUCKLAND", 1168.75, 455.75, "Pacific/Auckland"),
-//					magadan.pinMaker("MAGADAN", 1080.5, 63, "Asia/Magadan"),
-//					dhaka.pinMaker("DHAKA", 857.75, 224.75, "Asia/Dhaka"),
-//					yangon.pinMaker("YANGON", 879, 251, "Asia/Rangoon"),
-//					nuuk.pinMaker("NUUK", 333, 36, "America/Godthab"),
-//					cairo.pinMaker("CAIRO", 639, 200, "Africa/Cairo"),
-//					kinshasa.pinMaker("KINSHASA", 580.5, 330.5, "Africa/Kinshasa"),
-//					lima.pinMaker("LIMA", 240.5, 359, "America/Lima"),
-//					reykjavik.pinMaker("REYKJAVÍK", 444, 36.25, "Atlantic/Reykjavik")
-
+//
+//			// Creating a new group to hold the map and the group of pins.
+//			Group mapPinOverlay = new Group(mapImage, pinGroup);
+//
+//			// Start of zoom function code.
+//			ZoomFunctions zf = new ZoomFunctions();
+//			ScrollPane zoomPane = new ScrollPane(zf.createZoomPane(mapPinOverlay));
+//			zoomPane.setFitToHeight(true);
+//			zoomPane.setFitToWidth(true);
+//
+//			// Creating new pane to hold the window navigation buttons.
+//			StackPane buttonPane = new StackPane();
+//			buttonPane.setBlendMode(BlendMode.SRC_OVER);
+//			buttonPane.getChildren().add(zf.createZoomButtonGroup(mapPinOverlay));
+//
+//			// Create new group to hold the panes and setting it in the border pane that
+//			// holds it.
+//			Group scrollPaneGroup = new Group(zoomPane, buttonPane);
+//			centerBorderPane.setCenter(scrollPaneGroup);
+//			
+//		
+			
+			citiesOnMap = new HashMap<String, Pin>();
+			// Creating a group to hold all of the pins and making pins.
+			Group pinGroup = new Group();
+			
+			addCity.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+//				HashMap<String, Pin> citiesOnMapLoop;
+//				citiesOnMapLoop = citiesOnMap;
+				String menuItem = ddm.getComboBoxValue();
+				for (HashMap.Entry<Pin, Group> entry : allCityPins.entrySet()) {
+					Pin key = entry.getKey();
+					Group value = entry.getValue();
+					if (key.getUserChoice().equals(menuItem)) {
+						System.out.println(key.getUserChoice());
+						pinGroup.getChildren().add(value);
+//						citiesOnMap.put(key.getCity(), value);
+					} 
+				}
+				}
+			});
+			
+//			for (Pin p : citiesOnMap.values()) {
+//				pinGroup.getChildren().add(p.pinMaker(p.getCityName(), p.getCityCoordinateX(), p.getCityCoordinateY(), p.getTimeZone()));
+//			}
+			
 			// Creating a new group to hold the map and the group of pins.
 			Group mapPinOverlay = new Group(mapImage, pinGroup);
 
 			// Start of zoom function code.
 			ZoomFunctions zf = new ZoomFunctions();
 			ScrollPane zoomPane = new ScrollPane(zf.createZoomPane(mapPinOverlay));
+			zoomPane.setFitToHeight(true);
+			zoomPane.setFitToWidth(true);
 
 			// Creating new pane to hold the window navigation buttons.
 			StackPane buttonPane = new StackPane();
@@ -343,40 +322,74 @@ public class Main extends Application {
 			// holds it.
 			Group scrollPaneGroup = new Group(zoomPane, buttonPane);
 			centerBorderPane.setCenter(scrollPaneGroup);
-
+			
 			// Start of conversion code:
 			TimeConverter tc = new TimeConverter();
 
 			// Using nested loops to check all pins.
 			// Adding listener for the TimeSpinner to reset times (and dates if applicable):
-			for (Pin timePin : citiesOnMap.values()) {
-				timePin.getTs().valueProperty().addListener((ov, OldValue, newValue) -> {
-					for (Pin pin : citiesOnMap.values()) {
-						String newDateTime = tc.Convert(timePin.getDate(), newValue, timePin.getTimeZoneID(),
-								pin.getTimeZoneID());
+
+			for (HashMap.Entry<Pin, Group> entry : allCityPins.entrySet()) {
+				Pin key = entry.getKey();
+				Group value = entry.getValue();
+				key.getTs().valueProperty().addListener((ov, OldValue, newValue) -> {
+					for (HashMap.Entry<Pin, Group> e : allCityPins.entrySet()) {
+						Pin k = e.getKey();
+//						Group v = e.getValue();
+						String newDateTime = tc.Convert(key.getDate(), newValue, key.getTimeZoneID(),
+								k.getTimeZoneID());
 						tc.outputFormatterDatePicker(newDateTime);
 						tc.outputFormatterTimeSpinner(newDateTime);
-						pin.setPinDateAndTime(tc.getNewYear(), tc.getNewMonth(), tc.getNewDay(), tc.getNewTime());
+						k.setPinDateAndTime(tc.getNewYear(), tc.getNewMonth(), tc.getNewDay(), tc.getNewTime());
 					}
 				});
 			}
 			
+			// Timeline Code
+//			final Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
+//                
+//				@Override
+//                public void handle(ActionEvent actionEvent) {
+//					// Creating a new group to hold the map and the group of pins.
+//					Group mapPinOverlay = new Group(mapImage, pinGroup);
+//
+//					// Start of zoom function code.
+//					ZoomFunctions zf = new ZoomFunctions();
+//					ScrollPane zoomPane = new ScrollPane(zf.createZoomPane(mapPinOverlay));
+//					zoomPane.setFitToHeight(true);
+//					zoomPane.setFitToWidth(true);
+//
+//					// Creating new pane to hold the window navigation buttons.
+//					StackPane buttonPane = new StackPane();
+//					buttonPane.setBlendMode(BlendMode.SRC_OVER);
+//					buttonPane.getChildren().add(zf.createZoomButtonGroup(mapPinOverlay));
+//
+//					// Create new group to hold the panes and setting it in the border pane that
+//					// holds it.
+//					Group scrollPaneGroup = new Group(zoomPane, buttonPane);
+//					centerBorderPane.setCenter(scrollPaneGroup);
+//                }
+//            }) , new KeyFrame(Duration.seconds(2)));
+//			timeline.setCycleCount(Animation.INDEFINITE);
+//			timeline.play();
+//			
+			
 			// TODO: replace below placeholder for filter code.
-			CheckBox c = new CheckBox();
-			c.setLayoutX(30);
-			c.setLayoutY(330);
-			c.setPrefSize(7, 7);
-			c.setPadding(new Insets(0,0,0,0));
-			c.setScaleX(.7);
-			c.setScaleY(.7);
-			c.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					//loop through HashMap
-					//Color code for green: "#ddffdf"
-				}
-			});
-			leftPane.getChildren().add(c);
+//			CheckBox c = new CheckBox();
+//			c.setLayoutX(30);
+//			c.setLayoutY(330);
+//			c.setPrefSize(7, 7);
+//			c.setPadding(new Insets(0,0,0,0));
+//			c.setScaleX(.7);
+//			c.setScaleY(.7);
+//			c.setOnAction(new EventHandler<ActionEvent>() {
+//				@Override
+//				public void handle(ActionEvent event) {
+//					//loop through HashMap
+//					//Color code for green: "#ddffdf"
+//				}
+//			});
+//			leftPane.getChildren().add(c);
 
 			root.getChildren().add(parentBorderPane);
 			window.setScene(scene);
@@ -387,6 +400,10 @@ public class Main extends Application {
 		}
 	}
 
+	public void DisplayMap() {
+		
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
