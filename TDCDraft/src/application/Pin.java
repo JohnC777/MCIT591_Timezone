@@ -20,8 +20,13 @@ public class Pin {
 	private TimeSpinner ts;
 	private ImageView pinImage;
 	private String userChoice;
+
+
 	private String cityName;
+	private double xAxis;
+	private double yAxis;
 	private String timeZone;
+
 	private double cityCoordinateX;
 	private double cityCoordinateY;
 
@@ -33,6 +38,7 @@ public class Pin {
 		this.timeZone = timeZone;
 		this.userChoice = userChoice;
 	}
+	
 	/**
 	 * Method creates a new pin group to add to the map.
 	 * 
@@ -47,7 +53,7 @@ public class Pin {
 		timeZoneID = timeZone;
 		
 		// Adds image for the pin background and sizes it.
-		ImageView pinImage = new ImageView();
+		pinImage = new ImageView();
 		Image pin = new Image(PINIMAGE_URL);
 		pinImage.setFitHeight(180.0);
 		pinImage.setFitWidth(200);
@@ -80,6 +86,7 @@ public class Pin {
 		ts.setPrefWidth(125);
 		ts.setLayoutX(15);
 		ts.setLayoutY(76);
+		
 
 		
 		// Creates a group to hold all elements
@@ -104,14 +111,19 @@ public class Pin {
 		ts.getValueFactory().setValue(time);
 	}
 	
-	public void setPinColor() {
-		Image greenPin = new Image(ImageURL);
-		pinImage.setImage(greenPin);
-	}
-	
+//	public void setPinColor() {
+//		Image greenPin = new Image(ImageURL);
+//		pinImage.setImage(greenPin);
+//	}
+
 	public String getTimeZoneID() {
 		return timeZoneID;
 	}
+
+	public String getTimeZone() {
+		return timeZone;
+	}
+
 
 	public String getCity() {
 		return city;
@@ -140,4 +152,21 @@ public class Pin {
 	public void setDate(LocalDate date) {
 		dp.setValue(date);
 	}
+	
+	public String getUserChoice() {
+		return userChoice;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+	
+	public double getCityCoordinateX() {
+		return cityCoordinateX;
+	}
+
+	public double getCityCoordinateY() {
+		return cityCoordinateY;
+	}
+	
 }
