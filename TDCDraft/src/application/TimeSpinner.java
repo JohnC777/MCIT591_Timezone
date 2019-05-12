@@ -13,8 +13,6 @@ import javafx.util.StringConverter;
 /**
  * Class creates a spinner object for user time input and output.
  * 
- * @author saimerriam
- *
  */
 public class TimeSpinner extends Spinner<LocalTime> {
 
