@@ -226,31 +226,4 @@ public class TimeConverter {
 		return newTime;
 	}
 
-//	public static void main(String[] args) {
-//		
-//		TimeConverter tc = new TimeConverter(); 
-//		
-//		// Test 1: Convert() method 
-//		tc.Convert("2019-08-08 16:00:00", "US/Eastern", "Australia/Adelaide");
-//
-//		// Test 2: InputFormatter() method 
-//		System.out.println(tc.InputFormatter("8/8/2019", "16:00:00"));
-//		
-//		// Test 3: OutputFormatterString() method 
-//		System.out.println(tc.OutputFormatterString(tc.Convert("2019-08-08 16:00:00", "US/Eastern", "Australia/Adelaide")));		
-//
-//		// Test 4: OutputFormatterDatePicker() method 
-//		//System.out.println(tc.OutputFormatterDatePicker(tc.OutputFormatterString(tc.Convert("2019-08-08 16:00:00", "US/Eastern", "Australia/Adelaide"))));		
-//		
-//		// Test 5: OutputFormatterTimeSpinner() method 
-//		System.out.println(tc.OutputFormatterTimeSpinner(tc.OutputFormatterString(tc.Convert("2019-08-08 16:00:00", "US/Eastern", "Australia/Adelaide"))));		
-//				
-//		
-//		 Improvements and features: 
-//		 //(a) User inputTimeDate selection => should be ready to be linked up :-)
-//		 //(b) Timezone Selection: link to selectable Map => getting there! 
-//		 //(c) Output linked to JavaFX Display  => getting there! 
-//		
-//	}
-
 }
