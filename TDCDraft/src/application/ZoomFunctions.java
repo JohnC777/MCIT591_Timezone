@@ -28,20 +28,22 @@ public class ZoomFunctions {
 	 * @param group consisting of the map and a Group of overlaid pins.
 	 * @return a ScrollPane to place on the parent pane.
 	 */
-	public ScrollPane createZoomPane(final Group group) {
+	public ScrollPane createZoomPane(Group group) {
 		final double SCALE_DELTA = 1.1;
 
 		// Creating a StackPane and adding group passed in
 		// This is so the button group can be added
 		final StackPane zoomPane = new StackPane();
 		zoomPane.getChildren().add(group);
-
+		
 		// Creating ScrollPane and setting StackPane content
 		final ScrollPane scroller = new ScrollPane();
 		final Group scrollContent = new Group(zoomPane);
 		scroller.setContent(scrollContent);
 		scroller.setPrefViewportWidth(860);
 		scroller.setPrefViewportHeight(678);
+		scroller.setFitToHeight(true);
+		scroller.setFitToWidth(true);
 
 		// Listener that adjusts the viewport when image bounds change
 		scroller.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
@@ -213,4 +215,3 @@ public class ZoomFunctions {
 
 	}
 }
-
