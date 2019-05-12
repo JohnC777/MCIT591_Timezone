@@ -36,7 +36,11 @@ public class Main extends Application {
 	ComboBox comboBox;
 
 	/*
-	 * (non-Javadoc)
+	 * (non-Javadoc) This gathers all components of the program.
+	 * 
+	 * Please note that the way JavaFX is configured, every object that is used in
+	 * the UI needs to be created, formatted, and placed in this one class. Since
+	 * this is a complex UI, this has resulted in a long method.
 	 * 
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
 	 */
@@ -46,7 +50,7 @@ public class Main extends Application {
 
 			// Setting main stage
 			window = primaryStage;
-			window.setTitle("Time Zone Planner");
+			window.setTitle("World Timezone Converter");
 			Group root = new Group();
 			Scene scene = new Scene(root, 1150, 750);
 
@@ -96,47 +100,27 @@ public class Main extends Application {
 			howToUse.setLayoutY(75);
 			howToUse.setFont(new Font(11));
 			howToUse.setFill(Color.web("d3d3d3"));
-			
-	        Button round1 = new Button();
-	        round1.setStyle(
-	                "-fx-background-radius: 5em; " +
-	                "-fx-min-width: 3px; " +
-	                "-fx-min-height: 3px; " +
-	                "-fx-max-width: 3px; " +
-	                "-fx-max-height: 3px;"
-	        );
-	        Button round2 = new Button();
-	        round2.setStyle(
-	                "-fx-background-radius: 5em; " +
-	                "-fx-min-width: 3px; " +
-	                "-fx-min-height: 3px; " +
-	                "-fx-max-width: 3px; " +
-	                "-fx-max-height: 3px;"
-	        );
-	        Button round3 = new Button();
-	        round3.setStyle(
-	                "-fx-background-radius: 5em; " +
-	                "-fx-min-width: 3px; " +
-	                "-fx-min-height: 3px; " +
-	                "-fx-max-width: 3px; " +
-	                "-fx-max-height: 3px;"
-	        );
-	        Button round4 = new Button();
-	        round4.setStyle(
-	                "-fx-background-radius: 5em; " +
-	                "-fx-min-width: 3px; " +
-	                "-fx-min-height: 3px; " +
-	                "-fx-max-width: 3px; " +
-	                "-fx-max-height: 3px;"
-	        );
-	        round1.setLayoutX(18);
-	        round1.setLayoutY(68);
-	        round2.setLayoutX(18);
-	        round2.setLayoutY(120);
-	        round3.setLayoutX(18);
-	        round3.setLayoutY(172);
-	        round4.setLayoutX(18);
-	        round4.setLayoutY(236);
+
+			Button round1 = new Button();
+			round1.setStyle("-fx-background-radius: 5em; " + "-fx-min-width: 3px; " + "-fx-min-height: 3px; "
+					+ "-fx-max-width: 3px; " + "-fx-max-height: 3px;");
+			Button round2 = new Button();
+			round2.setStyle("-fx-background-radius: 5em; " + "-fx-min-width: 3px; " + "-fx-min-height: 3px; "
+					+ "-fx-max-width: 3px; " + "-fx-max-height: 3px;");
+			Button round3 = new Button();
+			round3.setStyle("-fx-background-radius: 5em; " + "-fx-min-width: 3px; " + "-fx-min-height: 3px; "
+					+ "-fx-max-width: 3px; " + "-fx-max-height: 3px;");
+			Button round4 = new Button();
+			round4.setStyle("-fx-background-radius: 5em; " + "-fx-min-width: 3px; " + "-fx-min-height: 3px; "
+					+ "-fx-max-width: 3px; " + "-fx-max-height: 3px;");
+			round1.setLayoutX(18);
+			round1.setLayoutY(68);
+			round2.setLayoutX(18);
+			round2.setLayoutY(120);
+			round3.setLayoutX(18);
+			round3.setLayoutY(172);
+			round4.setLayoutX(18);
+			round4.setLayoutY(236);
 
 			// Code for the right/central section of the parentBorderPane.
 			BorderPane centerBorderPane = new BorderPane();
@@ -166,8 +150,14 @@ public class Main extends Application {
 			mapImage.setPickOnBounds(true);
 			mapImage.setPreserveRatio(true);
 
-			// Constructing the Pin classes to create pins.
-			// Otherwise will not be able to differentiate them.
+			/*
+			 * Constructing the Pin classes to create pins. Otherwise will not be able to
+			 * differentiate them. The Pins need to be created in this class.
+			 * 
+			 * Since creating hundreds of cities is outside of the scope of this project, 
+			 * we have included a short-list of 38 cities representing all major time zones. 
+			 * 
+			 */
 			Pin addisAbaba = new Pin("ADDIS ABABA", 667, 280.5, "Africa/Addis_Ababa", "Addis Ababa (UTC+03:00)");
 			Pin adelaide = new Pin("ADELAIDE", 1036, 447.75, "Australia/Adelaide", "Adelaide (UTC+09:30)");
 			Pin anchorage = new Pin("ANCHORAGE", -28.5, 53.5, "America/Anchorage", "Anchorage (UTC-08:00)");
