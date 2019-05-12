@@ -8,6 +8,13 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javafx.util.StringConverter;
 
+/**
+ * 
+ * This class performs conversions of time data and outputs new dates and times.
+ * 
+ * @author chelsealiu and saimerriam
+ *
+ */
 public class TimeConverter {
 
 	// Input variables: set by JavaFx User Selection
