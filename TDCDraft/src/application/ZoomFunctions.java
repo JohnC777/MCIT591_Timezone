@@ -20,12 +20,24 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/**
+ * 
+ * Class responsible for a variety of map manipulating functions including zoom
+ * in/out via scrolling and buttons, reset, scroll pane to ease map navigation.
+ * 
+ * @author saimerriam
+ *
+ */
+
 public class ZoomFunctions {
 
-	/**
-	 * Method creates a scroll-zoomable and click-draggable map pane.
+	/*
+	 * Method creates a scroll-zoomable and click-draggable map pane. We acknowledge
+	 * and thank James_D for his example code that enabled us to develop this
+	 * function. See README for link to his page.
 	 * 
 	 * @param group consisting of the map and a Group of overlaid pins.
+	 * 
 	 * @return a ScrollPane to place on the parent pane.
 	 */
 	public ScrollPane createZoomPane(Group group) {
@@ -35,7 +47,7 @@ public class ZoomFunctions {
 		// This is so the button group can be added
 		final StackPane zoomPane = new StackPane();
 		zoomPane.getChildren().add(group);
-		
+
 		// Creating ScrollPane and setting StackPane content
 		final ScrollPane scroller = new ScrollPane();
 		final Group scrollContent = new Group(zoomPane);
@@ -199,6 +211,7 @@ public class ZoomFunctions {
 		reset.setLayoutY(650);
 		reset.setPadding(new Insets(0, 0, 0, 0));
 		reset.setBlendMode(BlendMode.SRC_OVER);
+
 		// Set action for the scale to return to 100%
 		reset.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
