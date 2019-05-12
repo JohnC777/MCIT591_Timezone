@@ -16,8 +16,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class Pin {
-	private static final String PINIMAGE_URL = "WhitePinImage100.png";
-	private static final String GREENPINIMAGE_URL = "GreenPinImage100v2.png";
+	private static final String WHITEPINIMAGE_URL = "WhitePinImage100.png";
+	private static final String GREENPINIMAGE_URL = "GreenPinImage100.png";
 	private static final String PINKPINIMAGE_URL = "PinkPinImage100.png";
 	private String city;
 	private String timeZoneID;
@@ -59,7 +59,7 @@ public class Pin {
 		
 		// Adds image for the pin background and sizes it.
 		pinImage = new ImageView();
-		Image pin = new Image(PINIMAGE_URL);
+		Image pin = new Image(WHITEPINIMAGE_URL);
 		pinImage.setFitHeight(180.0);
 		pinImage.setFitWidth(200);
 		pinImage.setImage(pin);
@@ -127,7 +127,7 @@ public class Pin {
 			pinImage.setImage(pinkPin);
 		}
 		if (color.equals("white")) {
-			Image whitePin = new Image(PINIMAGE_URL);
+			Image whitePin = new Image(WHITEPINIMAGE_URL);
 			pinImage.setImage(whitePin);
 		}
 	}
