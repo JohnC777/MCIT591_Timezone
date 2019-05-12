@@ -11,7 +11,9 @@ import javafx.scene.input.InputEvent;
 import javafx.util.StringConverter;
 
 /**
- * Class creates a spinner object for user time input and output.
+ * Class creates a spinner object for user time input and output. We acknowledge
+ * and thank James_D for his example code that enabled us to develop this
+ * specialized spinner function. See README for link to his page.
  * 
  */
 public class TimeSpinner extends Spinner<LocalTime> {
