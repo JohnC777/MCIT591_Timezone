@@ -2,7 +2,11 @@ package application;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
+
+import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlendMode;
@@ -12,8 +16,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class Pin {
-	private static final String PINIMAGE_URL = "PinImage100.png";
-	//private static final String PINIMAGE_GREEN_URL = "GreenPinImage.png";
+	private static final String PINIMAGE_URL = "WhitePinImage100.png";
+	private static final String GREENPINIMAGE_URL = "GreenPinImage100v2.png";
+	private static final String PINKPINIMAGE_URL = "PinkPinImage100.png";
 	private String city;
 	private String timeZoneID;
 	private DatePicker dp;
@@ -111,11 +116,22 @@ public class Pin {
 		ts.getValueFactory().setValue(time);
 	}
 	
-//	public void setPinColor() {
-//		Image greenPin = new Image(ImageURL);
-//		pinImage.setImage(greenPin);
-//	}
-
+	public void setPinColor(String c) {
+		String color = c;
+		if (color.equals("green")) {
+			Image greenPin = new Image(GREENPINIMAGE_URL);
+			pinImage.setImage(greenPin);
+		}
+		if (color.equals("pink")) {
+			Image pinkPin = new Image(PINKPINIMAGE_URL);
+			pinImage.setImage(pinkPin);
+		}
+		if (color.equals("white")) {
+			Image whitePin = new Image(PINIMAGE_URL);
+			pinImage.setImage(whitePin);
+		}
+	}
+	
 	public String getTimeZoneID() {
 		return timeZoneID;
 	}
@@ -168,5 +184,6 @@ public class Pin {
 	public double getCityCoordinateY() {
 		return cityCoordinateY;
 	}
+	
 	
 }
