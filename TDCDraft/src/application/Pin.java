@@ -25,13 +25,8 @@ public class Pin {
 	private TimeSpinner ts;
 	private ImageView pinImage;
 	private String userChoice;
-
-
 	private String cityName;
-	private double xAxis;
-	private double yAxis;
 	private String timeZone;
-
 	private double cityCoordinateX;
 	private double cityCoordinateY;
 
