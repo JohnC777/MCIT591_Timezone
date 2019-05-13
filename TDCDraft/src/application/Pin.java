@@ -44,11 +44,7 @@ public class Pin {
 	 * @param timeZone
 	 * @param userChoice
 	 */
-	public Pin(String cityName, double cityCoordinateX, double cityCoordinateY, String timeZone, String userChoice) {
-		this.cityName = cityName;
-		this.cityCoordinateX = cityCoordinateX;
-		this.cityCoordinateY = cityCoordinateY;
-		this.timeZone = timeZone;
+	public Pin(String userChoice) {
 		this.userChoice = userChoice;
 	}
 
@@ -64,7 +60,9 @@ public class Pin {
 	public Group pinMaker(String cityName, double cityCoordinateX, double cityCoordinateY, String timeZone) {
 		city = cityName;
 		timeZoneID = timeZone;
-
+		this.cityCoordinateX = cityCoordinateX;
+		this.cityCoordinateY = cityCoordinateY;
+		
 		// Adds image for the pin background and sizes it.
 		pinImage = new ImageView();
 		Image pin = new Image(WHITEPINIMAGE_URL);
