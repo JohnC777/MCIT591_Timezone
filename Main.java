@@ -32,7 +32,7 @@ public class Main extends Application {
 	private static final String IMAGE_URL = "Map_Export500.png";
 	private HashMap<Pin, Group> allCityPins;
 	ToggleSwitch wakingHours;
-	ComboBox comboBox;
+	ComboBox<String> comboBox;
 
 	/*
 	 * (non-Javadoc) This gathers all components of the program.
@@ -243,7 +243,7 @@ public class Main extends Application {
 
 			// Search Bar Code
 			DropDownMenu ddm = new DropDownMenu();
-			comboBox = new ComboBox();
+			comboBox = new ComboBox<String>();
 			comboBox = ddm.populateComboBox();
 			new AutoCompleteComboBoxListener<>(comboBox);
 			comboBox.setLayoutX(184.75);
