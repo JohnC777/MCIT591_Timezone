@@ -32,7 +32,6 @@ public class Main extends Application {
 	private static final String IMAGE_URL = "Map_Export500.png";
 	private HashMap<Pin, Group> allCityPins;
 	ToggleSwitch wakingHours;
-	Button update;
 	ComboBox comboBox;
 
 	/*
@@ -158,47 +157,50 @@ public class Main extends Application {
 			 * we have included a short-list of 38 cities representing all major time zones. 
 			 * 
 			 */
-			Pin addisAbaba = new Pin("ADDIS ABABA", 667, 280.5, "Africa/Addis_Ababa", "Addis Ababa (UTC+03:00)");
-			Pin adelaide = new Pin("ADELAIDE", 1036, 447.75, "Australia/Adelaide", "Adelaide (UTC+09:30)");
-			Pin anchorage = new Pin("ANCHORAGE", -28.5, 53.5, "America/Anchorage", "Anchorage (UTC-08:00)");
-			Pin auckland = new Pin("AUCKLAND", 1168.75, 455.75, "Pacific/Auckland", "Auckland  (UTC+12:00)");
-			Pin beijing = new Pin("BEIJING", 954.75, 160, "Asia/Shanghai", "Beijing (UTC+08:00)");
-			Pin cairo = new Pin("CAIRO", 639, 200, "Africa/Cairo", "Cairo (UTC+02:00)");
-			Pin capeTown = new Pin("CAPE TOWN", 592.25, 444.25, "Africa/Johannesburg", "Cape Town (UTC+02:00)");
-			Pin caracas = new Pin("CARACAS", 277, 275.25, "America/Caracas", "Caracas (UTC-04:30)");
-			Pin dhaka = new Pin("DHAKA", 857.75, 224.75, "Asia/Dhaka", "Dhaka (UTC+06:00)");
-			Pin dubai = new Pin("DUBAI", 729, 219, "Asia/Dubai", "Dubai (UTC+04:00)");
-			Pin freetown = new Pin("FREETOWN", 475.75, 282.5, "Africa/Freetown", "Freetown (UTC+00:00)");
-			Pin hongKong = new Pin("HONG KONG", 945.5, 230, "Hongkong", "Hong Kong (UTC+08:00)");
-			Pin honolulu = new Pin("HONOLULU", -58, 233.5, "Pacific/Honolulu", "Honolulu (UTC-10:00)");
-			Pin houston = new Pin("HOUSTON", 172.5, 201.5, "US/Central", "Houston (UTC-05:00)");
-			Pin jakarta = new Pin("JAKARTA", 918, 337, "Asia/Jakarta", "Jakarta (UTC+07:00)");
-			Pin kathmandu = new Pin("KATHMANDU", 838.5, 208.5, "Asia/Kathmandu", "Kathmandu (UTC+05:45)");
-			Pin kinshasa = new Pin("KINSHASA", 580.5, 330.5, "Africa/Kinshasa", "Kinshasa (UTC+01:00)");
-			Pin lahore = new Pin("LAHORE", 797.75, 194.5, "Asia/Karachi", "Lahore (UTC+05:00)");
-			Pin lima = new Pin("LIMA", 240.5, 359, "America/Lima", "Lima (UTC-05:00)");
-			Pin london = new Pin("LONDON", 522.5, 105, "Europe/London", "London (UTC+01:00)");
-			Pin losAngeles = new Pin("LOS ANGELES", 87.5, 183.5, "America/Los_Angeles", "Los Angeles (UTC-07:00)");
-			Pin magadan = new Pin("MAGADAN", 1080.5, 63, "Asia/Magadan", "Magadan (UTC+10:00)");
-			Pin mexicoCity = new Pin("MEXICO CITY", 158.5, 243.5, "America/Mexico_City", "Mexico City (UTC-05:00)");
-			Pin mumbai = new Pin("MUMBAI", 794, 244, "Asia/Kolkata", "Mumbai (UTC+05:30)");
-			Pin newYork = new Pin("NEW YORK", 251.5, 153, "America/New_York", "New York (UTC-04:00)");
-			Pin nuuk = new Pin("NUUK", 333, 36, "America/Godthab", "Nuuk (UTC-02:00)");
-			Pin perth = new Pin("PERTH", 951.5, 435, "Australia/Perth", "Perth (UTC+08:00)");
-			Pin reykjavik = new Pin("REYKJAVÍK", 444, 36.25, "Atlantic/Reykjavik", "Reykjavik (UTC+00:00)");
-			Pin rome = new Pin("ROME", 570.25, 149.75, "Europe/Rome", "Rome (UTC+02:00)");
-			Pin saltLakeCity = new Pin("SALTLAKECITY", 122, 149, "US/Mountain", "Salt Lake City (UTC-06:00)");
-			Pin santiago = new Pin("SANTIAGO", 263, 441, "America/Santiago", "Santiago (UTC-03:00)");
-			Pin saoPaulo = new Pin("SÃO PAULO", 351.75, 403.5, "America/Sao_Paulo", "Sao Paulo (UTC-03:00)");
-			Pin sydney = new Pin("SYDNEY", 1082.5, 443.5, "Australia/Sydney", "Sydney (UTC+10:00)");
-			Pin tehran = new Pin("TEHRAN", 713, 175, "Asia/Tehran", "Tehran (UTC+04:30)");
-			Pin tokyo = new Pin("TOKYO", 1039.75, 176.5, "Asia/Tokyo", "Tokyo (UTC+09:00)");
-			Pin toronto = new Pin("TORONTO", 231, 141, "America/Toronto", "Toronto (UTC-04:00)");
-			Pin vancouver = new Pin("VANCOUVER", 70.25, 115.75, "America/Vancouver", "Vancouver (UTC-07:00)");
-			Pin yangon = new Pin("YANGON", 879, 251, "Asia/Rangoon", "Yangon (UTC+06:30)");
+			allCityPins = new HashMap<Pin, Group>();
+			
+			Pin addisAbaba = new Pin("Addis Ababa (UTC+03:00)");
+			Pin adelaide = new Pin("Adelaide (UTC+09:30)");
+			Pin anchorage = new Pin("Anchorage (UTC-08:00)");
+			Pin auckland = new Pin("Auckland  (UTC+12:00)");
+			Pin beijing = new Pin("Beijing (UTC+08:00)");
+			Pin cairo = new Pin("Cairo (UTC+02:00)");
+			Pin capeTown = new Pin("Cape Town (UTC+02:00)");
+			Pin caracas = new Pin("Caracas (UTC-04:30)");
+			Pin dhaka = new Pin("Dhaka (UTC+06:00)");
+			Pin dubai = new Pin("Dubai (UTC+04:00)");
+			Pin freetown = new Pin("Freetown (UTC+00:00)");
+			Pin hongKong = new Pin("Hong Kong (UTC+08:00)");
+			Pin honolulu = new Pin("Honolulu (UTC-10:00)");
+			Pin houston = new Pin("Houston (UTC-05:00)");
+			Pin jakarta = new Pin("Jakarta (UTC+07:00)");
+			Pin kathmandu = new Pin("Kathmandu (UTC+05:45)");
+			Pin kinshasa = new Pin("Kinshasa (UTC+01:00)");
+			Pin lahore = new Pin("Lahore (UTC+05:00)");
+			Pin lima = new Pin("Lima (UTC-05:00)");
+			Pin london = new Pin("London (UTC+01:00)");
+			Pin losAngeles = new Pin("Los Angeles (UTC-07:00)");
+			Pin magadan = new Pin("Magadan (UTC+10:00)");
+			Pin mexicoCity = new Pin("Mexico City (UTC-05:00)");
+			Pin mumbai = new Pin("Mumbai (UTC+05:30)");
+			Pin newYork = new Pin("New York (UTC-04:00)");
+			Pin nuuk = new Pin("Nuuk (UTC-02:00)");
+			Pin perth = new Pin("Perth (UTC+08:00)");
+			Pin philadelphia = new Pin("Philadelphia (UTC-04:00)");
+			Pin reykjavik = new Pin("Reykjavik (UTC+00:00)");
+			Pin rome = new Pin("Rome (UTC+02:00)");
+			Pin saltLakeCity = new Pin("Salt Lake City (UTC-06:00)");
+			Pin santiago = new Pin("Santiago (UTC-03:00)");
+			Pin saoPaulo = new Pin("Sao Paulo (UTC-03:00)");
+			Pin sydney = new Pin("Sydney (UTC+10:00)");
+			Pin tehran = new Pin("Tehran (UTC+04:30)");
+			Pin tokyo = new Pin("Tokyo (UTC+09:00)");
+			Pin toronto = new Pin("Toronto (UTC-04:00)");
+			Pin vancouver = new Pin("Vancouver (UTC-07:00)");
+			Pin yangon = new Pin("Yangon (UTC+06:30)");
 
 			// Creating a HashMap to hold all Pins and Pin Groups.
-			allCityPins = new HashMap<Pin, Group>();
+			
 			allCityPins.put(addisAbaba, addisAbaba.pinMaker("ADDIS ABABA", 667, 280.5, "Africa/Addis_Ababa"));
 			allCityPins.put(adelaide, adelaide.pinMaker("ADELAIDE", 1036, 447.75, "Australia/Adelaide"));
 			allCityPins.put(anchorage, anchorage.pinMaker("ANCHORAGE", -28.5, 53.5, "America/Anchorage"));
@@ -226,6 +228,7 @@ public class Main extends Application {
 			allCityPins.put(newYork, newYork.pinMaker("NEW YORK", 251.5, 153, "America/New_York"));
 			allCityPins.put(nuuk, nuuk.pinMaker("NUUK", 333, 36, "America/Godthab"));
 			allCityPins.put(perth, perth.pinMaker("PERTH", 951.5, 435, "Australia/Perth"));
+			allCityPins.put(philadelphia, philadelphia.pinMaker("PHILADELPHIA", 247.25, 157.5, "America/New_York"));
 			allCityPins.put(reykjavik, reykjavik.pinMaker("REYKJAVÍK", 444, 36.25, "Atlantic/Reykjavik"));
 			allCityPins.put(rome, rome.pinMaker("ROME", 570.25, 149.75, "Europe/Rome"));
 			allCityPins.put(saltLakeCity, saltLakeCity.pinMaker("SALTLAKECITY", 122, 149, "US/Mountain"));
@@ -388,7 +391,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public HashMap<Pin, Group> getAllCityPins() {
+		return allCityPins;
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
